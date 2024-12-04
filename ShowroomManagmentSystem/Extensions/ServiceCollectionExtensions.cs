@@ -1,9 +1,4 @@
-﻿using AspNetCoreHero.ToastNotification;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.Facebook;
-using NToastNotify;
-
-namespace ShowroomManagmentSystem.Extensions
+﻿namespace ShowroomManagmentSystem.Extensions
 {
     public static class ServiceCollectionExtensions
     {
@@ -17,7 +12,6 @@ namespace ShowroomManagmentSystem.Extensions
                 .AddScopedServices()
                 .AddSingletonServices()
                 .AddCustomAuthentication()
-                //.AddOauth2Configuration(configuration)
                 .AddSqlServerConfiguration(appSetting.SqlServerConnection);
             return services;
         }
@@ -107,37 +101,6 @@ namespace ShowroomManagmentSystem.Extensions
                 config.Position = NotyfPosition.BottomRight; // Vị trí thông báo
                 config.HasRippleEffect = true; // Hiệu ứng ripple khi click vào thông báo
             });
-            return services;
-        }
-
-        public static IServiceCollection AddOauth2Configuration(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.MinimumSameSitePolicy = SameSiteMode.Lax;
-            });
-
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = FacebookDefaults.AuthenticationScheme;
-            })
-            .AddCookie(options =>
-            {
-                options.Cookie.SameSite = SameSiteMode.None;
-                options.Cookie.SecurePolicy = CookieSecurePolicy.None;
-            })
-          
-            .AddFacebook(options =>
-            {
-                options.AppId = configuration["Authentication:Facebook:AppId"];
-                options.AppSecret = configuration["Authentication:Facebook:AppSecret"];
-                options.Scope.Add("public_profile");
-                options.Fields.Add("picture");
-                //options.Scope.Add("email");
-            });
-
             return services;
         }
     }

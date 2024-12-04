@@ -12,8 +12,8 @@ using ShowroomManagmentSystem.Data;
 namespace ShowroomManagmentSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241204024737_v3")]
-    partial class v3
+    [Migration("20241204081547_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

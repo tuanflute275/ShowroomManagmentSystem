@@ -1,4 +1,6 @@
-﻿namespace ShowroomManagmentSystem.Configurations
+﻿using Microsoft.AspNetCore.CookiePolicy;
+
+namespace ShowroomManagmentSystem.Configurations
 {
     public static class AppConfiguration
     {
@@ -11,7 +13,12 @@
             app.UseRouting();
 
             // Using cookie and authen -author in this app
-            app.UseCookiePolicy();
+            app.UseCookiePolicy(new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = SameSiteMode.Lax,
+                HttpOnly = HttpOnlyPolicy.Always,
+                Secure = CookieSecurePolicy.SameAsRequest
+            });
             app.UseAuthentication();
             app.UseAuthorization();
 

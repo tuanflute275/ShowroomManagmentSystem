@@ -22,3 +22,5 @@ global using ShowroomManagmentSystem.Exceptions;
 global using System.Diagnostics;
 global using AspNetCoreHero.ToastNotification.Extensions;
 global using ShowroomManagmentSystem.Utils;
+global using AspNetCoreHero.ToastNotification;
+global using NToastNotify;
