@@ -2,8 +2,8 @@
 {
     public enum AccountStatus
     {
-        Active      = 0,      // 0: Active    (Mở khóa)
-        Locked      = 1,      // 1: Locked    (Tạm khóa) 
-        Suspended   = 2       // 2: Suspended (Cấm)
+        ACTIVE      = 0,      // 0: Active    (Mở khóa)
+        LOCKED      = 1,      // 1: Locked    (Tạm khóa) 
+        SUSPENDED   = 2       // 2: Suspended (Cấm)
     }
 }
