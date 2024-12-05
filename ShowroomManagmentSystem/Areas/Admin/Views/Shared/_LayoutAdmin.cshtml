@@ -16,6 +16,7 @@
     <link href="~/assets/css/main.css" rel="stylesheet">
     <link href="~/assets/css/my_style.css" rel="stylesheet">
     <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+    @RenderSection("Styles", required: false)
 </head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
@@ -639,17 +640,13 @@
             </div>
         </div>
     </div>
-   @*  <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false) *@
-
     <script src="@Url.Content("~/assets/scripts/jquery-3.2.1.min.js")"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="@Url.Content("~/assets/scripts/main.js")"></script>
     <script src="@Url.Content("~/assets/scripts/my_script.js")"></script>
-   @*  @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
     @await Component.InvokeAsync("NToastNotify")
-    @await Component.InvokeAsync("Notyf") *@
+    @await Component.InvokeAsync("Notyf")
 </body>
 </html>

@@ -1,7 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
 }
 @model ShowroomManagmentSystem.Models.Supplier
 <div class="app-main__inner">
@@ -117,7 +114,7 @@
 
                         <div class="position-relative row form-group mb-1">
                             <div class="col-md-9 col-xl-8 offset-md-2">
-                                <a href="#" class="border-0 btn btn-outline-danger mr-1">
+                                <a asp-area="Admin" asp-controller="Supplier" asp-action="Index" class="border-0 btn btn-outline-danger mr-1">
                                     <span class="btn-icon-wrapper pr-1 opacity-8">
                                         <i class="fa fa-times fa-w-20"></i>
                                     </span>

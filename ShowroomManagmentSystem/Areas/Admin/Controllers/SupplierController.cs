@@ -1,6 +1,7 @@
 ﻿namespace ShowroomManagmentSystem.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class SupplierController : Controller
     {
         private readonly ApplicationDbContext ctx;
@@ -32,12 +33,12 @@
         }
 
         [HttpPost]
-        public IActionResult AddSupplier(Supplier data)
+        public async Task<IActionResult> Save(Supplier data)
         {
-            ctx.Suppliers.Add(data);
-            ctx.SaveChanges();
+            await ctx.Suppliers.AddAsync(data);
+            await ctx.SaveChangesAsync();
             _toastNotification.Success("Thêm mới thành công !", 3);
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Delete(int Id)

@@ -51,6 +51,7 @@
                     0 => "User",
                     1 => "Admin",
                     2 => "Employee",
+                    3 => "Invoice",
                     _ => "User"
                 };
 

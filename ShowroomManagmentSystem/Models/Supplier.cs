@@ -63,6 +63,6 @@
         public DateTime? DeleteDate { get; set; }
 
         [StringLength(1)]
-        public string? DeleteFlag { get; set; }
+        public string? DeleteFlag { get; set; } // Y or N
     }
 }

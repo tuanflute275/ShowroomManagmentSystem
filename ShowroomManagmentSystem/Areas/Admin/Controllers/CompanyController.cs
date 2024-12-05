@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using X.PagedList;
-
-namespace ShowroomManagmentSystem.Areas.Admin.Controllers
+﻿namespace ShowroomManagmentSystem.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class CompanyController : Controller
     {
         private readonly ApplicationDbContext ctx;
