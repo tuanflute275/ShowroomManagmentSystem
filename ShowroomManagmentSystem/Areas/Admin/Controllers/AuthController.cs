@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.Facebook;
-using Newtonsoft.Json;
-
-namespace ShowroomManagmentSystem.Areas.Admin.Controllers
+﻿namespace ShowroomManagmentSystem.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class AuthController : Controller
@@ -18,57 +15,7 @@ namespace ShowroomManagmentSystem.Areas.Admin.Controllers
             _environment = environment;
         }
 
-        [HttpGet]
-        [Route("signin-facebook")]
-        public async Task<ActionResult> FacebookLogin()
-        {
-            var redirectUrl = Url.Action("FacebookCallback", "Auth");
-            return Challenge(new AuthenticationProperties { RedirectUri = redirectUrl }, FacebookDefaults.AuthenticationScheme);
-        }
-
-        [HttpGet]
-        [Route("facebook-callback")]
-        public async Task<ActionResult> FacebookCallback()
-        {
-            var authenticateResult = await HttpContext.AuthenticateAsync(FacebookDefaults.AuthenticationScheme);
-
-            if (!authenticateResult.Succeeded)
-            {
-                // Nếu xác thực thất bại, có thể xử lý theo nhu cầu của bạn, ví dụ như redirect tới trang lỗi
-                return RedirectToAction("Login", "Auth");
-            }
-
-            // Lấy thông tin người dùng từ Facebook
-            var accessToken = authenticateResult.Properties.GetTokenValue("access_token");
-
-            // Có thể gọi API Facebook để lấy thêm thông tin người dùng nếu cần
-            var userInfo = await GetFacebookUserInfo(accessToken);
-
-            // Đăng nhập người dùng vào ứng dụng
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, userInfo.Name),
-                new Claim(ClaimTypes.NameIdentifier, userInfo.Id),
-                // Thêm các claim khác nếu cần
-            };
-
-            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
-
-            // Redirect đến trang chủ hoặc một trang sau khi đăng nhập thành công
-            return RedirectToAction("Index", "Home");
-        }
-
-        // Hàm để gọi API Facebook và lấy thông tin người dùng
-        private async Task<dynamic> GetFacebookUserInfo(string accessToken)
-        {
-            var client = new HttpClient();
-            var response = await client.GetStringAsync($"https://graph.facebook.com/me?access_token={accessToken}&fields=id,name,picture");
-            return JsonConvert.DeserializeObject<dynamic>(response);
-        }
-
+       
         [HttpGet]
         [Route("login")]
         public IActionResult Index(string? returnUrl)
