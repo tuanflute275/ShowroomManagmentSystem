@@ -5,7 +5,7 @@ var services      = builder.Services;
 var configuration = builder.Configuration;
 
 // Add services to the container.
-services.AddDerivativeTradeServices(configuration);
+services.AddServiceCollectionExtensions(configuration);
 
 var app = builder.Build();
 

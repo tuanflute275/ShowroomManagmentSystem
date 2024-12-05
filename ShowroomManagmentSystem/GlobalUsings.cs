@@ -24,3 +24,4 @@ global using AspNetCoreHero.ToastNotification.Extensions;
 global using ShowroomManagmentSystem.Utils;
 global using AspNetCoreHero.ToastNotification;
 global using NToastNotify;
+global using X.PagedList;

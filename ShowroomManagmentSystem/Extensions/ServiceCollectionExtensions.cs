@@ -2,7 +2,7 @@
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddDerivativeTradeServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddServiceCollectionExtensions(this IServiceCollection services, IConfiguration configuration)
         {
             var appSetting = AppSetting.MapValues(configuration);
 

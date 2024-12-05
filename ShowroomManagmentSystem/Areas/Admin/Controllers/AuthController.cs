@@ -183,7 +183,7 @@
                 return View(forgotPasswordModel);
             }
         }
-       
+
         public async Task<IActionResult> Logout()
         {
             _toastNotification.Success("Logout successfully!", 3);
