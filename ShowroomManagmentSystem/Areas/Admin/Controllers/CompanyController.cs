@@ -25,5 +25,26 @@ namespace ShowroomManagmentSystem.Areas.Admin.Controllers
             var pageData = com.ToPagedList(pageSize, limit);
             return View(pageData);
         }
+        
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Save(Company data)
+        {
+            try
+            {
+                await ctx.Companies.AddAsync(data);
+                await ctx.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex);
+                return View(data);
+            }
+        }
     }
 }

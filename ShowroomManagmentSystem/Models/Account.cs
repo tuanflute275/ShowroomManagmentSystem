@@ -9,12 +9,12 @@
 
         [Required]
         [MaxLength(100)]
-        public string Username { get; set; } // Họ
+        public string? Username { get; set; } // Họ
 
         [NotMapped]
-        public string FullName { get; set; }
+        public string? FullName { get; set; }
 
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
         [MaxLength(200)]
         public string? Avatar { get; set; } // Đường dẫn ảnh đại diện

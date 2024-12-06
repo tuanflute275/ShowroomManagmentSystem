@@ -1,7 +1,7 @@
 ﻿namespace ShowroomManagmentSystem.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize]
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

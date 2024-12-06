@@ -1,0 +1,144 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    int i = 1;
+    var name = ViewBag.names;
+}
+<div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="fa-solid fa-earth-americas"></i>
+                </div>
+                <div>
+                    Account
+                    <div class="page-title-subheading">
+                        View, create, update, delete and manage.
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-title-actions">
+                <a asp-controller="Account" asp-action="Create" class="btn-shadow btn-hover-shine mr-3 btn btn-primary">
+                    <span class="btn-icon-wrapper pr-2 opacity-7">
+                        <i class="fa fa-plus fa-w-20"></i>
+                    </span>
+                    Create
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="main-card mb-3 card">
+
+                <div class="card-header">
+
+                    <form method="get">
+                        <div class="input-group">
+                            <input type="search" name="name" value="@name" id="search"
+                                   placeholder="Search everything" class="form-control">
+                            <span class="input-group-append">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-search"></i>&nbsp;
+                                    Search
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+
+
+                    <div class="btn-actions-pane-right">
+                        <form class="ml-5" method="get" action="@Url.Action("Index")">
+                            <div class="input-group">
+                                <p>Sort by UserName:</p>
+                                <select id="" name="name" onchange="this.form.submit()">
+                                    <option value="ascName" selected="@(ViewBag.names == "ascName")">Low To High</option>
+                                    <option value="descName" selected="@(ViewBag.names == "descName")">High To Low</option>
+                                </select>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center">ID</th>
+                                <th>Full Name</th>
+                                <th class="text-center">Phone</th>
+                                <th class="text-center">Address</th>
+                                <th class="text-center">Email</th>
+                                <th class="text-center">Level</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var a in Model)
+                            {
+                                <tr>
+                                    <td class="text-center text-muted">#@i</td>
+                                    <td>
+                                        <div class="widget-content p-0">
+                                            <div class="widget-content-wrapper">
+                                                <div class="widget-content-left mr-3">
+                                                    <div class="widget-content-left">
+                                                        <img width="40" class="rounded-circle"
+                                                             data-toggle="tooltip" title="Avatar"
+                                                             data-placement="bottom"
+                                                             src="@(a.Avatar != null
+                                                ? (a.Avatar.StartsWith("http")
+                                                    ? a.Avatar
+                                                    : Url.Content("~/Uploads/accounts/" + a.Avatar))
+                                                : Url.Content("~/images/defaultUser.png"))" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="widget-content-left flex2">
+                                                    <div class="widget-heading">@a.Username</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">@a.PhoneNumber</td>
+                                    <td class="text-center">@a.Address</td>
+                                    <td class="text-center">@a.Email</td>
+                                    <td class="text-center">
+                                        @(a.Role == 0 ? "User" : (a.Role == 1 ? "Admin" : "Employee"))
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="./user-show.html"
+                                           class="btn btn-hover-shine btn-outline-primary border-0 btn-sm">
+                                            Details
+                                        </a>
+                                        <a asp-area="Admin" asp-controller="Account" asp-action="Update" asp-route-id="@a.AccountId" data-toggle="tooltip" title="Edit"
+                                           data-placement="bottom" class="btn btn-outline-warning border-0 btn-sm">
+                                            <span class="btn-icon-wrapper opacity-8">
+                                                <i class="fa fa-edit fa-w-20"></i>
+                                            </span>
+                                        </a>
+                                        <form class="d-inline" action="" method="post">
+                                            <button asp-action="Delete" asp-route-id="@a.AccountId" class="btn btn-hover-shine btn-outline-danger border-0 btn-sm"
+                                                    type="submit" data-toggle="tooltip" title="Delete"
+                                                    data-placement="bottom"
+                                                    onclick="return confirm('Do you really want to delete this item?')">
+                                                <span class="btn-icon-wrapper opacity-8">
+                                                    <i class="fa fa-trash fa-w-20"></i>
+                                                </span>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                i++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

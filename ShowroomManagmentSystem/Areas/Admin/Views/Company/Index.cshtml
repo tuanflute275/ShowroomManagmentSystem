@@ -20,7 +20,7 @@
             </div>
 
             <div class="page-title-actions">
-                <a href="./category-create.html" class="btn-shadow btn-hover-shine mr-3 btn btn-primary">
+                <a asp-area="Admin" asp-controller="Company" asp-action="Create" class="btn-shadow btn-hover-shine mr-3 btn btn-primary">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-plus fa-w-20"></i>
                     </span>
@@ -73,12 +73,39 @@
                             @foreach (var c in Model)
                             {
                                 <tr>
-                                    <td class="text-center text-muted">#</td>
+                                    <td class="text-center text-muted">#@i</td>
                                     <td>
                                         <div class="widget-content p-0">
                                             <div class="widget-content-wrapper">
                                                 <div class="widget-content-left flex2">
-                                                    <div class="widget-heading"></div>
+                                                    <div class="widget-heading">{c.CompanyName}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="widget-content p-0">
+                                            <div class="widget-content-wrapper">
+                                                <div class="widget-content-left flex2">
+                                                    <div class="widget-heading">{c.PhoneNumber}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="widget-content p-0">
+                                            <div class="widget-content-wrapper">
+                                                <div class="widget-content-left flex2">
+                                                    <div class="widget-heading">{c.Email}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="widget-content p-0">
+                                            <div class="widget-content-wrapper">
+                                                <div class="widget-content-left flex2">
+                                                    <div class="widget-heading">{c.status}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -102,9 +129,8 @@
                                         </form>
                                     </td>
                                 </tr>
+                                i++;
                             }
-
-
                         </tbody>
                     </table>
                 </div>
